@@ -203,7 +203,7 @@ module RubyCurses
       list(val)
     end
     # get element at
-    # @param [Fixnum] index for element
+    # @param [Integer] index for element
     # @return [Object] element
     # @since 1.2.0  2010-09-06 14:33 making life easier for others.
     def [](off0)

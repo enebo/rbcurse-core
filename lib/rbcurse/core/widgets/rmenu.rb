@@ -259,7 +259,7 @@ module RubyCurses
     end
     ## added 2009-01-21 12:09 NEW
     def remove n
-      if n.is_a? Fixnum
+      if n.is_a? Integer
         @items.delete_at n
       else
         @items.delete n

@@ -242,7 +242,7 @@ module RubyCurses
       end
     end
     # shows a simple progress bar on last row, using stdscr
-    # @param [Float, Array<Fixnum,Fixnum>] percentage, or part/total
+    # @param [Float, Array<Integer,Integer>] percentage, or part/total
     # If Array of two numbers is given then also print part/total on left of bar
     # @deprecated - don't use stdscr at all, use rdialogs status_window (see test2.rb)
     def raw_progress arg

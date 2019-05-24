@@ -283,7 +283,7 @@ module RubyCurses
     # TODO more methods like in listbox so interchangeable, delete_at etc
     def column_width colindex, width
       return if width < 0
-      raise ArgumentError, "wrong width value sent: #{width} " if width.nil? || !width.is_a?(Fixnum) || width < 0
+      raise ArgumentError, "wrong width value sent: #{width} " if width.nil? || !width.is_a?(Integer) || width < 0
       @cw[colindex] = width # uncommented 2011-12-1 for expand on +
       @pw[colindex] = width # XXXXX
       get_column(colindex).width = width
@@ -731,7 +731,7 @@ module RubyCurses
     # NOTE: useful for overriding and doing custom formatting
     # @param [Array] array of column data, mostly +String+
     #        Can also be :columns or :separator
-    # @param [Fixnum] index of row in data
+    # @param [Integer] index of row in data
     def convert_value_to_text r, count
       if r == :separator
         return separator
@@ -908,7 +908,7 @@ module RubyCurses
     # Convert current cursor position to a table column
     # calculate column based on curpos since user may not have
     # user w and b keys (:next_column)
-    # @return [Fixnum] column index base 0
+    # @return [Integer] column index base 0
     def _convert_curpos_to_column  #:nodoc:
       x = 0
       @coffsets.each_pair { |e,i| 

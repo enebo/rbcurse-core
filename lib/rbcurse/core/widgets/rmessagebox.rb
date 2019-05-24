@@ -361,7 +361,7 @@ module RubyCurses
     # e.g. a list was declared and we wish to know the selected_indices
     def widget n
       case n
-      when Fixnum
+      when Integer
         @form.widgets[n]
       when String, Symbol
         @form.by_name[n] 

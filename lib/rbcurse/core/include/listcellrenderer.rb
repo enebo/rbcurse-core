@@ -82,9 +82,9 @@ module RubyCurses
     #  paint a list box cell
     #
     #  @param [Buffer] window or buffer object used for printing
-    #  @param [Fixnum] row
-    #  @param [Fixnum] column
-    #  @param [Fixnum] actual index into data, some lists may have actual data elsewhere and
+    #  @param [Integer] row
+    #  @param [Integer] column
+    #  @param [Integer] actual index into data, some lists may have actual data elsewhere and
     #                  display data separate. e.g. rfe_renderer (directory listing)
     #  @param [String] text to print in cell
     #  @param [Boolean, cell focussed, not focussed

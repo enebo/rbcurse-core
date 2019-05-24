@@ -118,7 +118,7 @@ end
 # 2009-10-04 14:13 added RK after suggestion on http://www.ruby-forum.com/topic/196618#856703
 # these are for 1.8 compatibility
 unless "a"[0] == "a"
-  class Fixnum
+  class Integer
     def ord
       self
     end
@@ -269,7 +269,7 @@ module RubyCurses
       # Use this in order to create a color pair with the colors
       # provided, however, if user has not provided, use supplied
       # default.
-      # @param [Fixnum] color_pair created by ncurses
+      # @param [Integer] color_pair created by ncurses
       # @param [Symbol] color name such as white black cyan magenta red green yellow
       # @param [Symbol] bgcolor name such as white black cyan magenta red green yellow
       # @example get_color $promptcolor, :white, :cyan
@@ -284,13 +284,13 @@ module RubyCurses
       # convert a string to integer attribute
       # FIXME: what if user wishes to OR two attribs, this will give error
       # @param [String] e.g. reverse bold normal underline
-      #     if a Fixnum is passed, it is returned as is assuming to be 
+      #     if a Integer is passed, it is returned as is assuming to be 
       #     an attrib
       def get_attrib str
         return FFI::NCurses::A_NORMAL unless str
         # next line allows us to do a one time conversion and keep the value
         #  in the same variable
-        if str.is_a? Fixnum
+        if str.is_a? Integer
           if [
             FFI::NCurses::A_BOLD,
             FFI::NCurses::A_REVERSE,    
@@ -513,7 +513,7 @@ module RubyCurses
           end
 
           h.each_pair { |name, val| 
-            if name.is_a? Fixnum
+            if name.is_a? Integer
               name = keycode_tos name
             elsif name.is_a? String
               name = keycode_tos(name.getbyte(0))
@@ -1211,7 +1211,7 @@ module RubyCurses
        oldvalue = @color_pair
        case val.size
        when 1
-         raise ArgumentError, "Expecting fixnum for color_pair." unless val[0].is_a? Fixnum
+         raise ArgumentError, "Expecting fixnum for color_pair." unless val[0].is_a? Integer
          @color_pair = val[0]
          @color, @bgcolor = ColorMap.get_colors_for_pair @color_pair
        when 2
@@ -2169,7 +2169,7 @@ module RubyCurses
     # NOTE: this should return self for chaining operations and throw an exception
     # if disabled or exceeding size
     # @param [char] a character to add
-    # @return [Fixnum] 0 if okay, -1 if not editable or exceeding length
+    # @return [Integer] 0 if okay, -1 if not editable or exceeding length
     def putch char
       return -1 if !@editable 
       return -1 if !@overwrite_mode && (@buffer.length >= @maxlen)
@@ -2257,7 +2257,7 @@ module RubyCurses
       case dt.to_s
       when "String"
         return @buffer
-      when "Fixnum"
+      when "Integer"
         return @buffer.to_i
       when "Float"
         return @buffer.to_f
@@ -2953,7 +2953,7 @@ module RubyCurses
           _color   = @selected_foreground || @color
         end
         $log.debug "XXX: button #{text}   STATE is #{@state} color #{_color} , bg: #{_bgcolor} "
-        if _bgcolor.is_a?( Fixnum) && _color.is_a?( Fixnum)
+        if _bgcolor.is_a?( Integer) && _color.is_a?( Integer)
         else
           _color = get_color($datacolor, _color, _bgcolor)
         end

@@ -21,7 +21,7 @@ require 'rbcurse/core/include/chunk'
 # crashes in the most unlikely places. This prevceents me from having to write ternary
 # e.g.
 #     @layout[:width].ifzero(FFI::NCurses::LINES-2)
-class Fixnum
+class Integer
   def ifzero v
     return self if self != 0
     return v
@@ -231,7 +231,7 @@ module VER
 
     # NOTE: many of these methods using width will not work since root windows width 
     #  is 0
-    def print(string, width = width)
+    def print(string, width = width())
       return unless visible?
       w = width == 0? Ncurses.COLS : width
       waddnstr(string.to_s, w) # changed 2011 dts  
@@ -694,7 +694,7 @@ module VER
     #  with some word in yellow, and then the line continues in red.
     #
     def printstring_formatted(r,c,content, color, att = Ncurses::A_NORMAL)
-      att = get_attrib att unless att.is_a? Fixnum
+      att = get_attrib att unless att.is_a? Integer
       chunkline = convert_to_chunk(content, color, att)
       printstring_or_chunks r,c, chunkline, color, att
     end # print
